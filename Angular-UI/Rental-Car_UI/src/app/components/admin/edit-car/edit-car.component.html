@@ -1,0 +1,43 @@
+<h1 class="fw-bolder font-monospace text-center text-primary mb-5 mt-3">Edit Car</h1>
+
+<div class="container font-monospace d-flex justify-content-center">
+  <form style="width: 20rem;" [formGroup]="editCarForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mb-2">
+      <label class="form-label text-light fw-bold" for="maker">Maker</label>
+      <input formControlName="maker" type="text" class="form-control" aria-describedby="maker" placeholder="Enter Maker"
+        required>
+      <span class="text-danger"
+        *ngIf="isSubmitted && editCarForm.get('maker')!.invalid && editCarForm.get('maker')!.errors">
+        Please enter a valid Maker (max 255 characters, alphanumeric).
+      </span>
+    </div>
+    <div class="form-group mb-2">
+      <label class="form-label text-light fw-bold" for="model">Model</label>
+      <input formControlName="model" type="text" class="form-control" id="model"
+        aria-describedby="model" placeholder="Enter Model" required>
+        <span class="text-danger"
+        *ngIf="isSubmitted && editCarForm.get('model')!.invalid && editCarForm.get('model')!.errors">
+        Please enter a valid Maker (max 255 characters, alphanumeric).
+      </span>
+    </div>
+    <div class="form-group mb-2">
+      <label class="form-label text-light fw-bold" for="exampleInputEmail1">Cost Per Day</label>
+      <input formControlName="cost" type="number" class="form-control" id="exampleInputEmail1"
+        aria-describedby="emailHelp" placeholder="Enter Cost" required min="0">
+        <span class="text-danger"
+        *ngIf="isSubmitted && editCarForm.get('cost')!.invalid && editCarForm.get('cost')!.errors">
+        Please enter a valid cost (decimal value optional,upto 2 digit).
+      </span>
+    </div>
+    <div class="form-group mb-2">
+      <label class="form-label text-light fw-bold" for="exampleInputEmail1">Mileage Per Litre </label>
+      <input formControlName="mileage" type="number" class="form-control" id="exampleInputEmail1"
+        aria-describedby="emailHelp" placeholder="Enter Mileage" required min="0" max="40">
+        <span class="text-danger"
+        *ngIf="isSubmitted && editCarForm.get('mileage')!.invalid && editCarForm.get('mileage')!.errors">
+        Please enter a valid mileage (max: 40. decimal value optional, upto 2 digit.).
+      </span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Edit</button>
+  </form>
+</div>

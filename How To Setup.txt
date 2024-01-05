@@ -1,0 +1,17 @@
+  "JWT": {
+    "ValidAudience": "User",
+    "ValidIssuer": "http://localhost:4200",
+    "Secret": "ThisIsMySecureKey12345678"
+  }
+
+ // //Admin - 1
+    string email = "admin@admin.com";
+    string password = "Admin@123";
+
+    // //User - 1
+    string email1 = "user1@user.com";
+    string password1 = "User@123";
+
+    // //User - 2
+    string email2 = "user2@user.com";
+    string password2 = "User@123";

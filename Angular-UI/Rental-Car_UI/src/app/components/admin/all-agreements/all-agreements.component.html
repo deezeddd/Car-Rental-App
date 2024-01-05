@@ -1,0 +1,26 @@
+
+<div class="row">
+  <h1 class="text-info" *ngIf="agreements.length==0">No Agreement Available</h1>
+  <div class="card m-3 custom-shadow" style="width: 15rem; " *ngFor="let agreement of agreements ">
+    <div class="card-body">
+      <h3 class="card-title text-center">{{this.agreement.maker}}</h3>
+      <h5 class="card-text text-center">{{this.agreement.model}}</h5>
+      <p class="card-text">
+        <small class="text-muted">Fr : {{this.agreement.startDate| date:'dd/MM/yy'}}</small>
+      </p>
+      <small class=" text-danger ">To : {{this.agreement.endDate| date:'dd/MM/yy'}}</small>
+      <div class="d-flex justify-content-lg-around">
+        <p class="card-text text-end">
+          <small class="text-muted">Rental Price: ₹{{this.agreement.rentalCost}}/Day</small>
+        </p>
+      </div>
+      <p class="text-warning fw-medium text-center">Total Cost: ₹{{this.agreement.totalCost}}</p>
+      <div class="text-center">
+        <button href="#" class="btn btn-sm btn-outline-success m-2" *ngIf="this.agreement.requested!=='Approved'"  (click)="onInspect(this.agreement.agreementId)">Inspect </button>
+        <button class="btn btn-sm btn-outline-danger m-2" (click)="onDelete(this.agreement.agreementId)">Delete </button>
+
+      </div>
+    </div>
+  </div>
+
+</div>

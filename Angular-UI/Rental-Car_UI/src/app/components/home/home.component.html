@@ -1,0 +1,75 @@
+<div class="row">
+  <h1 *ngIf="cars.length==0" class="text-info">No Cars Available at the moment</h1>
+  <div class="d-flex align-baseline">
+    <select class="form-select w-25 m-1" id="filterBy" [(ngModel)]="filter">
+      <option value="null">Filter By</option>
+      <option value="Maker">Maker</option>
+      <option value="Model">Model</option>
+      <option value="Cost">Cost</option>
+    </select>
+    <select class="form-select w-25 m-1" id="filterByMaker" *ngIf="this.filter==='Maker'" [(ngModel)]="maker"
+      (change)="filterByMaker()">
+      <option value="null">Maker</option>
+      <option value={{this.car.maker}} *ngFor="let car of originalCars">{{this.car.maker}}</option>
+    </select>
+    <select class="form-select w-25 m-1" id="filterByModel" *ngIf="this.filter==='Model'"  [(ngModel)]="model"
+      (change)="filterByModel()">
+      <option value="null">Model</option>
+      <option value={{this.car.model}} *ngFor="let car of originalCars">{{this.car.model}}</option>
+    </select>
+    <select class="form-select w-25 m-1" id="filterByCost"  *ngIf="this.filter==='Cost'" [(ngModel)]="cost"
+      (change)="filterByCost()">
+      <option value="null">Cost</option>
+      <option value="500"> &gt;500 </option>
+      <option value="2000"> &gt;2000 </option>
+      <option value="5000">5000+</option>
+    </select>
+    <button class="btn btn-primary" (click)="reset()">Reset</button>
+  </div>
+  <div class="card m-3 custom-shadow" style="width: 15rem;" *ngFor="let car of cars">
+    <div class="card-body">
+      <h3 class="card-title text-center">{{this.car.maker}}</h3>
+      <h5 class="card-text text-center">{{this.car.model}}</h5>
+      <p class="card-text text-center">
+        <small class="text-muted">Mileage : {{this.car.mileage}}km/L</small>
+      </p>
+      <div class="d-flex justify-content-lg-around">
+        <p class="text-success" *ngIf="this.car.availability==='Available' ">Available</p>
+        <p class="text-danger" *ngIf="this.car.availability==='Unavailable' ">Unavailb.</p>
+
+        <!-- <p class="text-danger">Not Available</p> -->
+        <p class="card-text text-end">
+          <small class="text-muted">₹{{this.car.cost}}/Day</small>
+        </p>
+      </div>
+      <div *ngIf="!this.isAdmin" class="text-center mt-2 d-flex justify-content-center align-items-baseline">
+        <button class="btn btn-outline-success btn-sm" *ngIf="this.car.availability==='Available'"
+          (click)="onClick(this.car.id)">Rent</button>
+        <button class="btn btn-outline-danger btn-sm" *ngIf="this.car.availability==='Unavailable'"
+          disabled>Rent</button>
+
+      </div>
+      <div *ngIf="this.isAdmin" class="text-center mt-2 d-flex justify-content-between align-items-baseline">
+        <button class="btn btn-outline-primary btn-sm " (click)="onEdit(this.car.id)">Edit</button>
+        <button class="btn btn-outline-danger btn-sm" (click)="onDelete(this.car.id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="d-flex justify-content-center pagination-sm">
+  <nav class="" aria-label="...">
+    <ul class="pagination">
+      <li class="page-item disabled">
+        <span class="page-link">Previous</span>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item active" aria-current="page">
+        <span class="page-link">2</span>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div> -->
